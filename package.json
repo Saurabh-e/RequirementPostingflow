@@ -1,0 +1,20 @@
+{
+  "name": "event-requirements-app",
+  "version": "1.0.0",
+  "description": "Full-stack event requirements posting application",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install --legacy-peer-deps",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "build-backend": "cd backend && npm run build",
+    "build-frontend": "cd frontend && npm run build",
+    "build": "npm run build-backend && npm run build-frontend"
+  },
+  "keywords": ["event", "requirements", "nextjs", "express", "mongodb"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
