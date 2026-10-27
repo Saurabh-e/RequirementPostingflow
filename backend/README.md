@@ -16,7 +16,7 @@ Express.js and MongoDB backend API for the Event Requirements Application.
 ## Setup
 
 ### Prerequisites
-- Node.js v18+
+- Node.js v20+
 - MongoDB installed and running
 
 ### Installation
@@ -57,6 +57,22 @@ local development. CORS is restricted to these origins; production startup
 requires `FRONTEND_URL`. Requests may use `GET`, `POST`, `PUT`, `PATCH`,
 `DELETE`, and `OPTIONS`, with `Content-Type` and `Authorization` headers.
 Preflight requests are handled by the CORS middleware before API routes.
+
+## Deploying to Render
+
+The repository includes a Render Blueprint at `../render.yaml`. In Render,
+create a new Blueprint Instance from this repository and configure these
+environment variables for the backend service:
+
+- `MONGODB_URI`: A reachable MongoDB connection string. For MongoDB Atlas,
+  allow Render's outbound connections in the Atlas network access settings.
+- `FRONTEND_URL`: The exact HTTPS origin of the deployed Vercel frontend, with
+  no path (for example, `https://your-app.vercel.app`).
+
+Render supplies `PORT`; do not set it manually. The Blueprint installs from the
+backend lockfile, compiles TypeScript, starts the compiled server, and checks
+`/health`. The service starts listening only after MongoDB connects, so verify
+database credentials and network access if deployment fails its health check.
 
 ## API Endpoints
 
